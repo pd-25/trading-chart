@@ -12,45 +12,25 @@ import {
 import React, { useEffect, useRef } from "react";
 import "../app/globals.css";
 
-interface CandleData {
-  open: number;
-  high: number;
-  low: number;
-  close: number;
-  time: number;
-}
-
 function Home() {
   // Create a ref for the chart container element
-  const chartContainerRef = useRef<HTMLDivElement>(null);
+  const chartContainerRef = useRef(null);
 
   useEffect(() => {
     // Check if the ref is not null
     if (chartContainerRef.current) {
       // Sample initial data for the candlestick chart
-      const initialData: CandleData[] = [
+      const initialData = [
         { open: 10, high: 10.63, low: 9.49, close: 9.55, time: 1642427876 },
         { open: 9.55, high: 10.3, low: 9.42, close: 9.94, time: 1642514276 },
         { open: 9.94, high: 10.17, low: 9.92, close: 9.78, time: 1642600676 },
         { open: 9.78, high: 10.59, low: 9.18, close: 9.51, time: 1642687076 },
         { open: 9.51, high: 10.46, low: 9.1, close: 10.17, time: 1642773476 },
-        {
-          open: 10.17,
-          high: 10.96,
-          low: 10.16,
-          close: 10.47,
-          time: 1642859876,
-        },
+        { open: 10.17, high: 10.96, low: 10.16, close: 10.47, time: 1642859876 },
         { open: 10.47, high: 11.39, low: 10.4, close: 10.81, time: 1642946276 },
         { open: 10.81, high: 11.6, low: 10.3, close: 10.75, time: 1643032676 },
         { open: 10.75, high: 11.6, low: 10.49, close: 10.93, time: 1643119076 },
-        {
-          open: 10.93,
-          high: 11.53,
-          low: 10.76,
-          close: 10.96,
-          time: 1643205476,
-        },
+        { open: 10.93, high: 11.53, low: 10.76, close: 10.96, time: 1643205476 },
         { open: 10.96, high: 11.7, low: 10.8, close: 11.3, time: 1643291876 },
         { open: 11.3, high: 11.8, low: 11.2, close: 11.7, time: 1643378276 },
         { open: 11.7, high: 12.0, low: 11.5, close: 11.9, time: 1643464676 },
@@ -87,7 +67,7 @@ function Home() {
       ];
 
       // Create chart instance
-      const chart: IChartApi = createChart(chartContainerRef.current, {
+      const chart = createChart(chartContainerRef.current, {
         layout: {
           background: { color: "#222" },
           textColor: "#DDD",
@@ -101,7 +81,7 @@ function Home() {
       });
 
       // Add candlestick series
-      const candlestickSeriesOptions: CandlestickSeriesOptions = {
+      const candlestickSeriesOptions = {
         upColor: "#26a69a",
         downColor: "#ef5350",
         borderVisible: false,
@@ -109,7 +89,7 @@ function Home() {
         wickDownColor: "#ef5350",
       };
 
-      const newSeries: ISeriesApi<"Candlestick"> = chart.addCandlestickSeries(
+      const newSeries = chart.addCandlestickSeries(
         candlestickSeriesOptions
       );
       newSeries.setData(initialData);
